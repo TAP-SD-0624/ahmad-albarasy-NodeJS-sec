@@ -1,7 +1,8 @@
-const { readdirSync, readFileSync, existsSync } = require('fs');
+const { readdirSync, readFileSync, existsSync, appendFileSync } = require('fs');
 const path = require('path');
 const AppError = require('../utils/AppError');
 const tryCatchWrap = require('../utils/tryCatchWrap');
+const { isValidFileName } = require('../utils/fileNameValidator');
 
 const renderHome = (req, res, next) => {
     const files = readdirSync('./data', { recursive: true });
@@ -23,7 +24,21 @@ const viewFile = tryCatchWrap((req, res, next) => {
 });
 
 const createFile = tryCatchWrap((req, res, next) => {
-    if (req.method === 'GET') return res.status(200).render('create', {});
+    if (req.method === 'GET')
+        return res
+            .status(200)
+            .render('create', { feedback: '', feedbackStatus: '' });
+    const { fileName, fileContent } = req.body;
+    if (!fileName || !fileContent)
+        throw new AppError('Missing fields.', 400, 2); // errCode 2 : means that the request doesn't match the way it's intended to be.
+    if (!isValidFileName(fileName))
+        throw new AppError('Invalid file name.', 400, 2); // errCode 2 : means that the request doesn't match the way it's intended to be.
+    const filePath = path.join('./data', fileName);
+    appendFileSync(filePath, fileContent); // creates new file if it doesn't exist, if it exists, it appends the content to it.
+    res.status(201).render('create', {
+        feedback: 'File created successfully.',
+        feedbackStatus: 'positive',
+    });
 });
 
 module.exports = { renderHome, viewFile, createFile };

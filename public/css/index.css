@@ -13,9 +13,13 @@ body {
 }
 
 main {
-    margin: 10px;
+    margin: 15px;
 }
 
 .feedback-message {
     color: rgb(151, 43, 43);
+}
+
+.positive {
+    color: rgb(91, 180, 62);
 }

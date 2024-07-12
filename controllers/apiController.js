@@ -39,7 +39,7 @@ const deleteFile = tryCatchWrap((req, res, next) => {
 const createFile = tryCatchWrap((req, res, next) => {
     const { fileName, content } = req.body;
     if (!fileName || !content) {
-        throw new AppError('Bad request', 400, 2); // errCode 2 : means that the request doesn't match the way it's intended to be.
+        throw new AppError('Missing data', 400, 2); // errCode 2 : means that the request doesn't match the way it's intended to be.
     }
     if (!isValidFileName(fileName))
         throw new AppError('Invalid file name.', 400, 2);
