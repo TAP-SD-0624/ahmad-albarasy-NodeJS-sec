@@ -1,4 +1,4 @@
-class APIError extends Error {
+class AppError extends Error {
     constructor(message, statusCode, errCode) {
         super(message);
         this.statusCode = statusCode;
@@ -6,4 +6,4 @@ class APIError extends Error {
     }
 }
 
-module.exports = APIError;
+module.exports = AppError;

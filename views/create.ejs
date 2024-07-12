@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/create.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <title>Create File</title>
+</head>
+<body>
+    <header>
+        <div class="links">
+            <a href="/" class="link">Home</a>
+            <a href="/files/create" class="link">Create File</a>
+        </div>
+    </header>
+    <main>
+        <h1>Create new File</h1>
+        <div class="form-container">
+            <form method="POST" action="/files/create">
+                <div class="form-group">
+                    <label for="filename">File Name:</label>
+                    <input type="text" id="filename" name="filename" required>
+                </div>
+                <div class="form-group">
+                    <label for="filecontent">File Content:</label>
+                    <textarea id="filecontent" name="filecontent" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

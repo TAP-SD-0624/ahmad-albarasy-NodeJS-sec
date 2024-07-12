@@ -6,7 +6,7 @@ const {
     createFile,
     renameFile,
 } = require('../controllers/apiController');
-const errorControllerAPI = require('../controllers/errorControllerAPI');
+const errorController = require('../controllers/errorController');
 
 const apiRouter = express.Router();
 
@@ -15,6 +15,6 @@ apiRouter.route('/files/create').post(createFile);
 apiRouter.route('/files/rename').patch(renameFile);
 apiRouter.route('/files/:filename').get(getFile).delete(deleteFile);
 
-apiRouter.use(errorControllerAPI);
+apiRouter.use(errorController);
 
 module.exports = apiRouter;

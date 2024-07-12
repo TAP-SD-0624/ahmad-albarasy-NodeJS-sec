@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/detail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <title>File Preview</title>
+</head>
+<body>
+    <header>
+        <div class="links">
+            <a href="/" class="link">Home</a>
+            <a href="/files/create" class="link">Create File</a>
+        </div>
+    </header>
+    <main>
+        <h1><%= fileName %> Content</h1>
+        <h3 class="feedback-message"><%= feedback %></h3>
+        <p class="file-content"><%- fileContent || '' %></p>
+    </main>
+</body>
+</html>
