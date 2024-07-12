@@ -43,7 +43,7 @@ const createFile = tryCatchWrap((req, res, next) => {
     }
     if (!isValidFileName(fileName))
         throw new AppError('Invalid file name.', 400, 2);
-    const filePath = path.join('./data', req.params.filename);
+    const filePath = path.join('./data', fileName);
     appendFileSync(filePath, content); // creates new file if it doesn't exist, if it exists, it appends the content to it.
     res.status(201).json({
         status: 'success',
@@ -52,9 +52,12 @@ const createFile = tryCatchWrap((req, res, next) => {
 
 const renameFile = tryCatchWrap((req, res, next) => {
     const { oldName, newName } = req.body;
+    console.log(oldName, newName);
     if (!oldName || !newName) throw new AppError('Bad request', 400, 2);
     const oldPath = path.join('./data', oldName);
     const newPath = path.join('./data', newName);
+    if (existsSync(newPath))
+        throw new AppError('A file already has that name.', 400, 2);
     if (!existsSync(oldPath)) throw new AppError('File not found', 404, 1);
     if (!isValidFileName(newName))
         throw new AppError('Invalid new name for file.', 400, 2);

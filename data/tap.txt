@@ -1,8 +1,0 @@
-{
-    "student": {
-        "name": "Ahmad",
-        "age": 21,
-        "program": "Software Development",
-        "cohort-code": "SD0624"
-    }
-}

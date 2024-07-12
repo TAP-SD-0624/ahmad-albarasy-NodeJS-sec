@@ -10,7 +10,7 @@ const ViewErrorHandler = (err, req, res, next) => {
             fileName: req.params.filename,
             feedback: err.message,
         });
-    else if (req.url.startsWith('/files') && err.errCode === 2) {
+    else if (req.url.startsWith('/create') && err.errCode === 2) {
         res.status(err.statusCode).render('create', {
             feedback: err.message,
             feedbackStatus: '',
